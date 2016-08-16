@@ -1,4 +1,4 @@
-# Arduino SunriseClock v1.0 #
+# Arduino SunriseClock v2.0 #
 https://github.com/lincolnjohnson/SunriseClock
 ReadMe file  
 Lincoln Johnson August 2016
@@ -42,7 +42,7 @@ The Pro Micro tends to be cranky with the Arduino IDE sometimes, especially if y
 
 I strongly suggest you use a high-quality power supply, as when cheap ebay ones start to die they tend to send out significant voltage spikes that fry things... such as your Arduino.
 
-"Arduino SunriseClock v1.0" by Lincoln Johnson is licensed under CC BY-SA 4.0.
+"Arduino SunriseClock v2.0" by Lincoln Johnson is licensed under CC BY-SA 4.0.
 Included libraries are licensed under the licenses provided by their respective creators.
 
 ## Usage notes ##
@@ -80,6 +80,7 @@ Rotary encoder used to:
 - 2x 11 pin female headers to enable easy replacement of arduino in case of failure
 - 3x 6 pin headers to connect 3208 matrix and switches board
 - 1x 5 pin header to connect RTC
+- 1x 2 pin header to connect LED strip
 - 1x screw terminal header for power connection to power supply
 - Various hookup/connection wires
 - Breadboard if no PCB
@@ -107,7 +108,7 @@ I haven't tested this board yet as it hasn't shown up from the fab. It's probabl
 
 ![An eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/Eagle.png)
 
-## SunriseCLock Functions ##
+## SunriseClock Functions ##
 
 ###ISR(PCINT0_vect)
 #####Description
