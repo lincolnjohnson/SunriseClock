@@ -34,7 +34,7 @@ There are dual signal wires to the transistor controlling the LEDs because it se
 
 The Pro Micro tends to be cranky with the Arduino IDE sometimes, especially if you are trying to load code to it for the first time, or switching between sketches. I find that jumpering the RST and GND pins, pressing upload on the IDE, and then disconnecting the jumper as soon as the IDE finishes compiling and outputs the size of the files used fixes this problem. Subsequent uploads with the same sketch should work fine. Not sure if this is a problem related to my use of cheap ebay clones.
 
-I strongly suggest you use a high-quality power supply, as when cheap ebay ones start to die they tend to send out significant voltage spikes that fry things... such as your connected Arduino.
+I strongly suggest you use a high-quality power supply, as when cheap ebay ones start to die they tend to send out significant voltage spikes that fry things... such as your Arduino.
 
 "Arduino SunriseClock v1.0" by Lincoln Johnson is licensed under CC BY-SA 4.0.
 Included libraries are licensed under the licenses provided by their respective creators.
@@ -87,13 +87,13 @@ Rotary encoder used to:
 
 This is a little messy, but it should get you most of the way there.
 
-!(https://github.com/lincolnjohnson/SunriseClock/blob/master/Fritzing.png)
+![A fritzing breadboard layout](https://github.com/lincolnjohnson/SunriseClock/blob/master/Fritzing.png)
 
 ## Eagle board PCB layout ##
 
-I haven't tested this board yet as it hasn't shown up from the fab. Use at your own risk.
+I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. Use at your own risk.
 
-!(https://github.com/lincolnjohnson/SunriseClock/blob/master/Eagle.png)
+![An eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/Eagle.png)
 
 ## SunriseCLock Functions ##
 
