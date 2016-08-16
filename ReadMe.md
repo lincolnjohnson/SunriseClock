@@ -15,7 +15,7 @@ An LED sunrise clock using an Arduino Pro Micro, 5M 5630 LED strip (300 LEDs/str
 
 I've tried a few of the commercially available sunrise clocks, and none of them seem to go bright enough to really help me wake up. So I went with "bigger is better," and maybe a little too far. The LED strip pulls ~72W of power at full brightness, and at 8.5% is sufficient as a standalone light to read or work by.
 
-Should provide ~13,500 lumens at full brightness. Compare that to off-the-shelf sunrise clocks, which generally provide ~300-800 lumens... It's bright enough to hurt my eyes from across the room, and definitely gets me out of bed. I didn't build in functionality to limit the brightness or change the sunrise length, but these would be reasonably trivial to implement if desired.
+Should provide ~10,000 lumens at full brightness. Compare that to off-the-shelf sunrise clocks, which generally provide ~300-800 lumens... It's bright enough to hurt my eyes from across the room, and definitely gets me out of bed. I didn't build in functionality to limit the brightness or change the sunrise length, but these would be reasonably trivial to implement if desired.
 
 The clock can be set to natually shift along with the natural sunrise if desired so that you wake up with the real sunrise during the summer months when it shifts earlier.
 
