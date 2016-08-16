@@ -18,14 +18,15 @@ The clock can be set to natually shift along with the natural sunrise if desired
 I've included a fritzing layout and Eagle files for PCB printing. The PCB is designed to be split into two boards, one for the arduino, one for the rotary encoder and switch to be mounted near the top of the case I'm designing.
 
 Functionality included:
--16-bit PWM control of LED lamp brightness
--Sunrise brightness uses an exponential function to ramp up brightness in a way that appears linear to the human eye
--User defined Sunrise (alarm) start time, ramps up over 30 minutes
--Choose to have sunrise follow the natural sunrise time or not (with the latest time being the above defined time)
--Automatic dimming after two hours at full brightness
--Brightness of light when outside of sunrise period
--Set RTC clock using rotary encoder
--Automatic RTC adjustment for DST
+
+- 16-bit PWM control of LED lamp brightness
+- Sunrise brightness uses an exponential function to ramp up brightness in a way that appears linear to the human eye
+- User defined Sunrise (alarm) start time, ramps up over 30 minutes
+- Choose to have sunrise follow the natural sunrise time or not (with the latest time being the above defined time)
+- Automatic dimming after two hours at full brightness
+- Brightness of light when outside of sunrise period
+- Set RTC clock using rotary encoder
+- Automatic RTC adjustment for DST
 
 I made some minor adjustments to a couple of the included libraries or used non-standard versions, so they're included in this repository as well so as to make your life easier if you want to compile/build this. Everything in the includes folder is not my own original work. The other included files listed such as EEPROM and Wire are standard arduino versions.
 
@@ -40,51 +41,59 @@ Included libraries are licensed under the licenses provided by their respective 
 
 ## Usage notes ##
 
-Run InitialSetup.ino on your Arduino board to initialize EEPROM values and set the time on your RTC [alternatively, these can all be set through the configuration menu]
-Update latitude and longitude values for your location in SunriseClock.ino
-Run SunriseClock.ino on your Arduino board
+- Run InitialSetup.ino on your Arduino board to initialize EEPROM values and set the time on your RTC [alternatively, these can all be set through the configuration menu]
+- Update latitude and longitude values for your location in SunriseClock.ino
+- Run SunriseClock.ino on your Arduino board
 
 Pushbutton used to:
--Cancel sunrise if you wake up before it completes
--Toggle clock and light on or off when outside sunrise period and not in configuration menu
--Go back one level in configuration menu, or exit config if on top level
+
+- Cancel sunrise if you wake up before it completes
+- Toggle clock and light on or off when outside sunrise period and not in configuration menu
+- Go back one level in configuration menu, or exit config if on top level
 
 Rotary encoder used to:
--Cycle between configuration menu options or option settings
--Pushbutton used to enter config menu or select menu option displayed
+
+- Cycle between configuration menu options or option settings
+- Pushbutton used to enter config menu or select menu option displayed
 
 ## Electronics BOM ##
-1x Arduino Pro Micro (Nano also tested and works for base functionality, changes would need to be made to schematic)
-1x 80W+ power supply (PMT-12V100W1AA used)
-1x 5m 5630 LED strip
-1x RTC Clock (ebay DS3231 clock module board used)
-1x 8x32 LED display board with HT1632C controller
-1x Pushbutton switch (1825910-6 used)
-1x Rotary encoder with pushbutton switch (EN12-HS22AF20 used)
-2x 0.1uF capacitor (K104K10X7RF5UH5 used)
-1x Diode (1N4004 used)
-1x PNP transistor (KSB772YSTU used)
-1x NPN transistor (KSD882YSTU used)
-2x 2.2k resistors
-1x 12V relay (ALKS321 used)
-Various hookup/connection wires
-Breadboard if no PCB
+
+- 1x Arduino Pro Micro (Nano also tested and works for base functionality, changes would need to be made to schematic)
+- 1x 80W+ power supply (PMT-12V100W1AA used)
+- 1x 5m 5630 LED strip
+- 1x RTC Clock (ebay DS3231 clock module board used)
+- 1x 8x32 LED display board with HT1632C controller
+- 1x Pushbutton switch (1825910-6 used)
+- 1x Rotary encoder with pushbutton switch (EN12-HS22AF20 used)
+- 2x 0.1uF capacitor (K104K10X7RF5UH5 used)
+- 1x Diode (1N4004 used)
+- 1x PNP transistor (KSB772YSTU used)
+- 1x NPN transistor (KSD882YSTU used)
+- 2x 2.2k resistors
+- 1x 12V relay (ALKS321 used)
+- Various hookup/connection wires
+- Breadboard if no PCB
 
 ## Materials used for physical build ##
-1x 5" to 4" ducting reducer, spray painted matte black
-1x 4" ducting connector
-1x 4" ducting cap
-1x 5" DIA 9" height acrylic canister with white tissue paper as shade
-1x AC power entry connector (701W-15/31 or similar)
-1x Aluminum knob for rotary encoder
+
+- 1x 5" to 4" ducting reducer, spray painted matte black
+- 1x 4" ducting connector
+- 1x 4" ducting cap
+- 1x 5" DIA 9" height acrylic canister with white tissue paper as shade
+- 1x AC power entry connector (701W-15/31 or similar)
+- 1x Aluminum knob for rotary encoder
 
 ## Fritzing Board Layout ##
 
 This is a little messy, but it should get you most of the way there.
 
+!(https://github.com/lincolnjohnson/SunriseClock/blob/master/Fritzing.png)
+
 ## Eagle board PCB layout ##
 
 I haven't tested this board yet as it hasn't shown up from the fab. Use at your own risk.
+
+!(https://github.com/lincolnjohnson/SunriseClock/blob/master/Eagle.png)
 
 ## SunriseCLock Functions ##
 
