@@ -32,6 +32,8 @@ Functionality included:
 - Set RTC clock using rotary encoder
 - Automatic RTC adjustment for DST
 
+Essentially, once initial program is loaded onto clock it never needs to be re-connected unless you want to update the baseline functionality. You can do everything you should need to do through the various menus.
+
 I made some minor adjustments to a couple of the included libraries or used non-standard versions, so they're included in this repository as well so as to make your life easier if you want to compile/build this. Everything in the includes folder is not my own original work. The other included files listed such as EEPROM and Wire are standard arduino versions.
 
 There are dual signal wires to the transistor controlling the LEDs because it seemed that one signal wire wasn't allowing the system to open fully. Not sure why, but doubling up appears to have fixed it - at full duty cycle it's just as bright as a direct connection to power.
