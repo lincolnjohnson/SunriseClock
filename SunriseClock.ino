@@ -21,8 +21,8 @@ const byte relayPin = 8;
 const byte SQWPin = 1;
 
 //LED Screen pins
-const byte pinDATA = 20;
-const byte pinWR = 19;
+const byte pinDATA = 19;
+const byte pinWR = 20;
 const byte pinCS1 = 18;
 
 //EEPROM Vars
@@ -49,9 +49,9 @@ volatile boolean alarmed = false;
 volatile boolean tripped = false;
 time_t alarmStart;
 
-//timelord stuff [kelowna]
-const float latitude = 49.894443;
-const float longitude = -119.464499;
+//timelord stuff
+const float latitude = 49;
+const float longitude = -119;
 volatile boolean gotSunrise = false;
 
 //brightness var
