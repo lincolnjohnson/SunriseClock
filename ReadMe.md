@@ -28,7 +28,7 @@ Functionality included:
 - User defined Sunrise (alarm) start time, ramps up over 30 minutes
 - Choose to have sunrise follow the natural sunrise time or not (with the latest time being the above defined time)
 - Automatic dimming after two hours at full brightness
-- Brightness of light when outside of sunrise period
+- User-adjustable brightness of light when outside of sunrise period
 - Set RTC clock using rotary encoder
 - Automatic RTC adjustment for DST
 
