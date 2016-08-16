@@ -5,6 +5,10 @@ Lincoln Johnson August 2016
 
 ![CC BY-SA](http://mirrors.creativecommons.org/presskit/buttons/80x15/png/by-sa.png)
 
+---
+
+![Crochet Cthulu for scale](https://github.com/lincolnjohnson/SunriseClock/blob/master/Clock.png)
+
 ## Introduction ##
 
 An LED sunrise clock using an Arduino Pro Micro, 5M 5630 LED strip (300 LEDs/strip), HT1632C 8X32 LED module, DS3231 RTC Module, and rotary encoder with built-in switch.
@@ -71,6 +75,10 @@ Rotary encoder used to:
 - 1x NPN transistor (KSD882YSTU used)
 - 2x 2.2k resistors
 - 1x 12V relay (ALKS321 used)
+- 2x 11 pin female headers to enable easy replacement of arduino in case of failure
+- 3x 6 pin headers to connect 3208 matrix and switches board
+- 1x 5 pin header to connect RTC
+- 1x screw terminal header for power connection to power supply
 - Various hookup/connection wires
 - Breadboard if no PCB
 
@@ -82,6 +90,8 @@ Rotary encoder used to:
 - 1x 5" DIA 9" height acrylic canister with white tissue paper as shade
 - 1x AC power entry connector (701W-15/31 or similar)
 - 1x Aluminum knob for rotary encoder
+
+**TODO: finish designing the damn case**
 
 ## Fritzing Board Layout ##
 
