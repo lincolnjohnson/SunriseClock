@@ -55,7 +55,7 @@ const float longitude = -119;
 volatile boolean gotSunrise = false;
 
 //brightness var
-volatile unsigned int brightLevel = 60000;
+volatile unsigned int brightLevel;
 
 //rotary encoder
 #define ENC_WR  PORTB //encoder port write  
@@ -137,6 +137,8 @@ void setup(void) {
   ICR1 = 0xFFFF;
   TCCR1A = 0b10101010;
   TCCR1B = 0b00011001;
+
+  brightLevel = ( EEPROM.read( BrightStor ) * 256 + 96 );
 
   // Set brightness
   setBrightness(brightLevel);
@@ -305,6 +307,8 @@ void stop() {
       else {
         knobVar = none;
         inMenu = 0;
+        HT1632.clear();
+        HT1632.render();
       }
     }
     else {
@@ -452,7 +456,7 @@ void getSunrise() {
   if ( EEPROM.read( EESunFollow ) == 0 ) { // not following the actual sunrise
     alarmHour = latestHour;
     alarmMinute = latestMin;
-  } else { 
+  } else {
     TimeLord Sun;
     Sun.TimeZone( ( -8 + IsDST() ) * 60  );
     Sun.Position( latitude, longitude );
@@ -463,15 +467,15 @@ void getSunrise() {
     //Serial.print((int) tmo[tl_hour]);
     //Serial.print(":");
     //Serial.println((int) tmo[tl_minute]);
-  
+
     if ( (int) tmo[tl_hour] < latestHour ) {
       alarmHour = (int) tmo[tl_hour];
       alarmMinute = (int) tmo[tl_minute];
     }
-  
+
     if ( (int) tmo[tl_hour] == latestHour ) {
       alarmHour = (int) tmo[tl_hour];
-  
+
       if ( (int) tmo[tl_minute] <= latestMin ) {
         alarmMinute = (int) tmo[tl_minute];
       }
@@ -479,7 +483,7 @@ void getSunrise() {
         alarmMinute = latestMin;
       }
     }
-  
+
     if ( (int) tmo[tl_hour] > latestHour ) {
       alarmHour = latestHour;
       alarmMinute = latestMin;
@@ -582,7 +586,7 @@ void knobPress() {
 }
 
 void KnobSelect() {
-  
+
   last_interrupt_time = interrupt_time;
 
   sei();
@@ -683,17 +687,10 @@ void KnobSelect() {
 
   RTC.set( now() );
 
-  
-  if ( digitalRead(relayPin) == LOW )
-  {
-    HT1632.clear();
-    HT1632.render();
-  }
-  else
-  {
-    ShowClock();
-  }
-  
+  HT1632.clear();
+  HT1632.render();
+  NOP();
+
   attachInterrupt(digitalPinToInterrupt(SQWPin), timeUpdate, FALLING);
 }
 
@@ -786,7 +783,7 @@ void KnobUpdate() {
       EEPROM.write( BrightStor, EEPROMVar + ( -encVal ) );
     }
     else {
-      brightLevel = 65376;
+      brightLevel = 65535;
       EEPROM.write( BrightStor, 255 );
     }
 
