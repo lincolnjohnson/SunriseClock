@@ -104,7 +104,7 @@ This is a little messy, but it should get you most of the way there.
 
 ## Eagle board PCB layout ##
 
-**This board has some significant errors in it. I'll upload a new version soon**
+I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. Use at your own risk.
 
 ![An eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/Eagle.png)
 
