@@ -73,9 +73,9 @@ Rotary encoder used to:
 - 1x Rotary encoder with pushbutton switch (EN12-HS22AF20 used)
 - 2x 0.1uF capacitor (K104K10X7RF5UH5 used)
 - 1x Diode (1N4004 used)
-- 1x PNP transistor (KSB772YSTU used)
+- 1x PNP transistor (KSB772YSTU used) OR 1x n-channel mosfet (FQU13N06L used)
 - 1x NPN transistor (KSD882YSTU used)
-- 2x 2.2k resistors
+- 3x 2.2k resistors
 - 1x 12V relay (ALKS321 used)
 - 2x 11 pin female headers to enable easy replacement of arduino in case of failure
 - 3x 6 pin headers to connect 3208 matrix and switches board
@@ -105,6 +105,8 @@ This is a little messy, but it should get you most of the way there.
 ## Eagle board PCB layout ##
 
 I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. In fact, I think I made a mistake on it, but won't be sure until the boards show up. Use at your own risk.
+
+This will need additional wires soldered on the LED power ciruit to handle the ~72W power drain. Also a 2.2k resistor soldered between pin 9 and position 3 on the PNP resistor spot if you're using a mosfet.
 
 ![An eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/Eagle.png)
 

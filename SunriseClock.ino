@@ -221,11 +221,13 @@ void loop(void) {
 
           if (z < 82)
           {
-            duty = (long) (65535.0 - (((z * 100.0 / 1024.0) / 902.3) * 65535.0));
+            duty = (long) (65535.0 - (((z * 100.0 / 1024.0) / 902.3) * 65535.0)); //If using PNP
+            //duty = (long) (((z * 100.0 / 1024.0) / 902.3) * 65535.0); //If using MOSFET
           }
           else
           {
-            duty = (long) (65535.0 - (pow(((z * 100.0 / 1024.0 + 16.0) / 116.0), 3.0) * 65535.0));
+            duty = (long) (65535.0 - (pow(((z * 100.0 / 1024.0 + 16.0) / 116.0), 3.0) * 65535.0)); //If using PNP
+            //duty = (long) (pow(((z * 100.0 / 1024.0 + 16.0) / 116.0), 3.0) * 65535.0); //If using MOSFET
           }
 
           setBrightness(duty);
@@ -614,7 +616,8 @@ void KnobSelect() {
       }
     }
     if ( knobVar == setBright ) {
-      EEPROMVar = ( 256 - EEPROM.read( BrightStor ) );
+      EEPROMVar = ( 256 - EEPROM.read( BrightStor ) ); //If using PNP
+      // EEPROMVar = EEPROM.read( BrightStor ); //If using mosfet
       outputVar = "Lux: ";
       outputVar = outputVar + String(EEPROMVar);
       ClockMenu( outputVar );
@@ -742,10 +745,11 @@ void KnobUpdate() {
 
   // Set sunrise latest minute (eeprom)
   if ( knobVar == sunMinute ) {
-    alarmMinute = ( EEPROM.read( MaxMinute ) + encVal ) % 60;
-    if ( alarmHour > 59 ) {
-      alarmHour = 59;
+    alarmMinute = ( EEPROM.read( MaxMinute ) + ( encVal * 5 ) ) % 60;
+    if ( alarmMinute > 55 ) {
+      alarmMinute = 55;
     }
+    alarmMinute = round(alarmMinute / 5) * 5; //Constrain to 5 minute intervals
     EEPROM.write( MaxMinute, alarmMinute );
   }
 
@@ -782,6 +786,10 @@ void KnobUpdate() {
       brightLevel = ( EEPROMVar + ( -encVal ) ) * 256 + 96;
       EEPROM.write( BrightStor, EEPROMVar + ( -encVal ) );
     }
+    //if ( EEPROMVar + ( encVal ) < 255 ) { //IF using MOSFET
+    //  brightLevel = ( EEPROMVar + ( encVal ) ) * 256 + 96;
+    //  EEPROM.write( BrightStor, EEPROMVar + ( encVal ) );
+    //}
     else {
       brightLevel = 65535;
       EEPROM.write( BrightStor, 255 );
