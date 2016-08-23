@@ -1,4 +1,4 @@
-# Arduino SunriseClock v3.0a #
+# Arduino SunriseClock v3.1 #
 https://github.com/lincolnjohnson/SunriseClock
 ReadMe file  
 Lincoln Johnson August 2016
@@ -42,7 +42,7 @@ The Pro Micro tends to be cranky with the Arduino IDE sometimes, especially if y
 
 I strongly suggest you use a high-quality power supply, as when cheap ebay ones start to die they tend to send out significant voltage spikes that fry things... such as your Arduino.
 
-"Arduino SunriseClock v3.0a" by Lincoln Johnson is licensed under CC BY-SA 4.0.
+"Arduino SunriseClock v3.1" by Lincoln Johnson is licensed under CC BY-SA 4.0.
 Included libraries are licensed under the licenses provided by their respective creators.
 
 ## Usage notes ##
@@ -93,27 +93,31 @@ Rotary encoder used to:
 
 **TODO: finish designing the damn case**
 
-## Main Board Layout ##
+## Main Board Schematic ##
 
 This is the main board without the rotary encoder and button on it. If you want it on one board, remove the TOSWITCHES headers and connect them as required.
 
-![Main board layout](https://github.com/lincolnjohnson/SunriseClock/blob/master/MainSch.png)
+![Main board schematic](https://github.com/lincolnjohnson/SunriseClock/blob/master/MainSch.png)
 
-## Switches Board Layout ##
+## Eagle Main Board PCB ##
+
+I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. Use at your own risk. Board size: 1.5464 sqin.
+
+This will need additional physical wires soldered on the LED power ciruit to handle the ~72W power drain if you use the set trace length.
+
+![Main eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/EagleMain.png)
+
+## Switches Board Schematic ##
 
 This is the board with the rotary encoder and button on it. If you want it on one board, remove the TOSWITCHES headers and connect them as required.
 
-![Main board layout](https://github.com/lincolnjohnson/SunriseClock/blob/master/SwitchSch.png)
+![Main board schematic](https://github.com/lincolnjohnson/SunriseClock/blob/master/SwitchSch.png)
 
-## Eagle board PCB layout ##
+## Eagle Switches Board PCB ##
 
-**THIS BOARD IS FOR VERSION 2.0, has not been updated yet to show changes for version 3**
+I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. Use at your own risk. Board size: 1.4388 sqin.
 
-I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. In fact, I think I made a mistake on it, but won't be sure until the boards show up. Use at your own risk.
-
-This will need additional wires soldered on the LED power ciruit to handle the ~72W power drain if you use the set trace length. Also a 2.2k resistor soldered between pin 9 and position 3 on the PNP resistor spot if you're using a mosfet.
-
-![An eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/Eagle.png)
+![Main eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/EagleSwitch.png)
 
 ## SunriseClock Functions ##
 
