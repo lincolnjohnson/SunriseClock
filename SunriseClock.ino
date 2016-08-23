@@ -16,7 +16,6 @@ const boolean debugbit = false;
 const byte pulsePin = 9;
 const byte pulsePin2 = 10;
 const byte stopPin = 7;
-const byte relayPin = 8;
 
 const byte SQWPin = 1;
 
@@ -123,7 +122,6 @@ void setup(void) {
   attachInterrupt(digitalPinToInterrupt(stopPin), stop, FALLING);
   pinMode(pulsePin, OUTPUT);
   pinMode(pulsePin2, OUTPUT);
-  pinMode(relayPin, OUTPUT);
 
   RTC.squareWave(SQWAVE_1_HZ);
   //RTC.squareWave(SQWAVE_NONE);
@@ -139,6 +137,7 @@ void setup(void) {
   TCCR1B = 0b00011001;
 
   brightLevel = ( EEPROM.read( BrightStor ) * 256 + 96 );
+  //brightLevel = 0;
 
   // Set brightness
   setBrightness(brightLevel);
@@ -161,8 +160,6 @@ void setup(void) {
   RTC.alarmInterrupt(ALARM_2, false);
 
   CheckDST();
-
-  digitalWrite(relayPin, HIGH);
 
   attachInterrupt(digitalPinToInterrupt(SQWPin), timeUpdate, FALLING);
 
@@ -207,7 +204,7 @@ void loop(void) {
         alarmStart = now();
 
         //DO SUNRISE
-        digitalWrite(relayPin, HIGH);
+        toggleLamp(1);
 
         static unsigned int z;
 
@@ -221,16 +218,15 @@ void loop(void) {
 
           if (z < 82)
           {
-            duty = (long) (65535.0 - (((z * 100.0 / 1024.0) / 902.3) * 65535.0)); //If using PNP
-            //duty = (long) (((z * 100.0 / 1024.0) / 902.3) * 65535.0); //If using MOSFET
+            duty = (long) (((z * 100.0 / 1024.0) / 902.3) * 65535.0);
           }
           else
           {
-            duty = (long) (65535.0 - (pow(((z * 100.0 / 1024.0 + 16.0) / 116.0), 3.0) * 65535.0)); //If using PNP
-            //duty = (long) (pow(((z * 100.0 / 1024.0 + 16.0) / 116.0), 3.0) * 65535.0); //If using MOSFET
+            duty = (long) (pow(((z * 100.0 / 1024.0 + 16.0) / 116.0), 3.0) * 65535.0);
           }
 
-          setBrightness(duty);
+          brightLevel = duty;
+          setBrightness(brightLevel);
 
           targetMillis = ( (unsigned long) ( millis() + interval ) );
 
@@ -245,8 +241,9 @@ void loop(void) {
     }
   }
 
-  if ( ( readBright() != brightLevel ) && ( now() - alarmStart > 9000 ) ) //Dim after two hours @ full brightness [OVER 9000 SECONDS!]
+  if ( ( now() - alarmStart > 9000 ) && ( readBright() > ( EEPROM.read( BrightStor ) * 256 + 96 ) ) ) //Dim after two hours @ full brightness [OVER 9000 SECONDS!]
   {
+    brightLevel = ( EEPROM.read( BrightStor ) * 256 + 96 );
     setBrightness(brightLevel);
   }
 
@@ -314,32 +311,40 @@ void stop() {
       }
     }
     else {
-      if ( readBright() == brightLevel ) //if complete or has been tripped previously
+      if ( readBright() == ( EEPROM.read( BrightStor ) * 256 + 96 ) ) //if complete or has been tripped previously
       {
-        digitalWrite( relayPin, !digitalRead(relayPin) );
-        if ( digitalRead(relayPin) == LOW )
-        {
-          HT1632.clear();
-          HT1632.render();
-        }
-        else
-        {
-          ShowClock();
-        }
+        toggleLamp(0);
+        HT1632.clear();
+        HT1632.render();
       }
-      else
+      else if ( readBright() == 0 ) //if lamp is off
+      {
+        toggleLamp(1);
+        ShowClock();
+      }
+      else //in sunrise period
       {
         tripped = true;
         setBrightness( brightLevel );
-        HT1632.setBrightness(1);
       }
     }
   }
   stop_last_interrupt_time = stop_interrupt_time;
 }
 
+void toggleLamp(boolean on) {
+  if ( on == 1 ) {
+    brightLevel = ( EEPROM.read( BrightStor ) * 256 + 96 );
+    setBrightness(brightLevel);
+  }
+  else {
+    brightLevel = 0;
+    setBrightness(brightLevel);
+  }
+}
+
 void timeUpdate() {
-  if ( digitalRead(relayPin) == HIGH ) //Only show clock when lamp on
+  if ( readBright() > 0 ) //Only show clock when lamp on
   {
     ShowClock();
   }
@@ -616,8 +621,7 @@ void KnobSelect() {
       }
     }
     if ( knobVar == setBright ) {
-      EEPROMVar = ( 256 - EEPROM.read( BrightStor ) ); //If using PNP
-      // EEPROMVar = EEPROM.read( BrightStor ); //If using mosfet
+      EEPROMVar = EEPROM.read( BrightStor );
       outputVar = "Lux: ";
       outputVar = outputVar + String(EEPROMVar);
       ClockMenu( outputVar );
@@ -782,14 +786,10 @@ void KnobUpdate() {
   if ( knobVar == setBright ) {
     EEPROMVar = EEPROM.read( BrightStor );
 
-    if ( EEPROMVar + ( -encVal ) < 255 ) {
-      brightLevel = ( EEPROMVar + ( -encVal ) ) * 256 + 96;
-      EEPROM.write( BrightStor, EEPROMVar + ( -encVal ) );
+    if ( EEPROMVar + ( encVal ) < 255 ) {
+      brightLevel = ( EEPROMVar + ( encVal ) ) * 256 + 96;
+      EEPROM.write( BrightStor, EEPROMVar + ( encVal ) );
     }
-    //if ( EEPROMVar + ( encVal ) < 255 ) { //IF using MOSFET
-    //  brightLevel = ( EEPROMVar + ( encVal ) ) * 256 + 96;
-    //  EEPROM.write( BrightStor, EEPROMVar + ( encVal ) );
-    //}
     else {
       brightLevel = 65535;
       EEPROM.write( BrightStor, 255 );

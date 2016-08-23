@@ -1,4 +1,4 @@
-# Arduino SunriseClock v2.1b #
+# Arduino SunriseClock v3.0a #
 https://github.com/lincolnjohnson/SunriseClock
 ReadMe file  
 Lincoln Johnson August 2016
@@ -42,7 +42,7 @@ The Pro Micro tends to be cranky with the Arduino IDE sometimes, especially if y
 
 I strongly suggest you use a high-quality power supply, as when cheap ebay ones start to die they tend to send out significant voltage spikes that fry things... such as your Arduino.
 
-"Arduino SunriseClock v2.1b" by Lincoln Johnson is licensed under CC BY-SA 4.0.
+"Arduino SunriseClock v3.0a" by Lincoln Johnson is licensed under CC BY-SA 4.0.
 Included libraries are licensed under the licenses provided by their respective creators.
 
 ## Usage notes ##
@@ -72,11 +72,8 @@ Rotary encoder used to:
 - 1x Pushbutton switch (1825910-6 used)
 - 1x Rotary encoder with pushbutton switch (EN12-HS22AF20 used)
 - 2x 0.1uF capacitor (K104K10X7RF5UH5 used)
-- 1x Diode (1N4004 used)
-- 1x PNP transistor (KSB772YSTU used) OR 1x n-channel mosfet (FQU13N06L used)
-- 1x NPN transistor (KSD882YSTU used)
-- 3x 2.2k resistors
-- 1x 12V relay (ALKS321 used)
+- 1x n-channel mosfet (FQU13N06L used)
+- 2x 2.2k resistors
 - 2x 11 pin female headers to enable easy replacement of arduino in case of failure
 - 3x 6 pin headers to connect 3208 matrix and switches board
 - 1x 5 pin header to connect RTC
@@ -110,6 +107,8 @@ This is the board with the rotary encoder and button on it. If you want it on on
 
 ## Eagle board PCB layout ##
 
+**THIS BOARD IS FOR VERSION 2.0, has not been updated yet to show changes for version 3**
+
 I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. In fact, I think I made a mistake on it, but won't be sure until the boards show up. Use at your own risk.
 
 This will need additional wires soldered on the LED power ciruit to handle the ~72W power drain if you use the set trace length. Also a 2.2k resistor soldered between pin 9 and position 3 on the PNP resistor spot if you're using a mosfet.
@@ -129,6 +128,16 @@ Called by interrupt, reads the inputs from pushbutton with software debouncing
 `stop();`
 #####Parameters
 None.
+#####Returns
+Nothing.
+
+###void toggleLamp(boolean on)
+#####Description
+Toggles lamp on or off
+#####Syntax
+`toggleLamp(0);`
+#####Parameters
+*(boolean)* on - 0 or false is off, 1 or true is on
 #####Returns
 Nothing.
 
