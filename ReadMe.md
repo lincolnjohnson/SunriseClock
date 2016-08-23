@@ -19,7 +19,7 @@ Should provide ~10,000 lumens at full brightness. Compare that to off-the-shelf 
 
 The clock can be set to natually shift along with the natural sunrise if desired so that you wake up with the real sunrise during the summer months when it shifts earlier.
 
-I've included a fritzing layout and Eagle files for PCB printing. The PCB is designed to be split into two boards, one for the arduino, one for the rotary encoder and switch to be mounted near the top of the case I'm designing.
+I've included a schematic and Eagle files for PCB printing. The PCB is designed to be split into two boards, one for the arduino, one for the rotary encoder and switch to be mounted near the top of the case I'm designing.
 
 Functionality included:
 
