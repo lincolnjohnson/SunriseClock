@@ -325,6 +325,7 @@ void stop() {
       else //in sunrise period
       {
         tripped = true;
+        brightLevel = ( EEPROM.read( BrightStor ) * 256 + 96 );
         setBrightness( brightLevel );
       }
     }
