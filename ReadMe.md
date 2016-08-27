@@ -19,7 +19,7 @@ Should provide ~10,000 lumens at full brightness. Compare that to off-the-shelf 
 
 The clock can be set to natually shift along with the natural sunrise if desired so that you wake up with the real sunrise during the summer months when it shifts earlier.
 
-I've included a schematic and Eagle files for PCB printing. The PCB is designed to be split into two boards, one for the arduino, one for the rotary encoder and switch to be mounted near the top of the case I'm designing.
+I've included a schematic and Eagle files for PCB printing. The PCB is designed to be split into two boards, one for the arduino, one for the rotary encoder and switch to be mounted near the top of the case I've designed. Case plans are in the Drawings folder.
 
 Functionality included:
 
@@ -36,7 +36,7 @@ Essentially, once initial program is loaded onto clock it never needs to be re-c
 
 I made some minor adjustments to a couple of the included libraries or used non-standard versions, so they're included in this repository as well so as to make your life easier if you want to compile/build this. Everything in the includes folder is not my own original work. The other included files listed such as EEPROM and Wire are standard arduino versions.
 
-There are dual signal wires to the transistor controlling the LEDs because it seemed that one signal wire wasn't allowing the system to open fully. Not sure why, but doubling up appears to have fixed it - at full duty cycle it's just as bright as a direct connection to power.
+There are dual signal wires to the transistor controlling the LEDs because it seemed that one signal wire wasn't allowing the system to open fully when using a transistor. Not sure why, but doubling up appears to have fixed it - at full duty cycle it's just as bright as a direct connection to power. Now that I've switched to using a MOSFET, one is fine but two doesn't hurt so I left it. If you need the extra pin for something else you can always remove one of 9/10 and update the code appropriately.
 
 The Pro Micro tends to be cranky with the Arduino IDE sometimes, especially if you are trying to load code to it for the first time, or switching between sketches. I find that jumpering the RST and GND pins, pressing upload on the IDE, and then disconnecting the jumper as soon as the IDE finishes compiling and outputs the size of the files used fixes this problem. Subsequent uploads with the same sketch should work fine. Not sure if this is a problem related to my use of cheap ebay clones.
 
@@ -65,20 +65,20 @@ Rotary encoder used to:
 ## Electronics BOM ##
 
 - 1x Arduino Pro Micro (Nano also tested and works for base functionality, changes would need to be made to schematic)
-- 1x 80W+ power supply (PMT-12V100W1AA used)
+- 1x 80W+ power supply (PMT-12V100W1AA)
 - 1x 5m 5630 LED strip
-- 1x RTC Clock (ebay DS3231 clock module board used)
+- 1x RTC Clock (ebay DS3231 clock module board)
 - 1x 8x32 LED display board with HT1632C controller
-- 1x Pushbutton switch (1825910-6 used)
-- 1x Rotary encoder with pushbutton switch (EN12-HS22AF20 used)
-- 2x 0.1uF capacitor (K104K10X7RF5UH5 used)
-- 1x n-channel mosfet (FQU13N06L used)
+- 1x Pushbutton switch (1825910-6)
+- 1x Rotary encoder with pushbutton switch (EN12-HS22AF20)
+- 2x 0.1uF capacitor (K104K10X7RF5UH5)
+- 1x n-channel mosfet (FQU13N06L)
 - 2x 2.2k resistors
-- 2x 11 pin female headers to enable easy replacement of arduino in case of failure
-- 3x 6 pin headers to connect 3208 matrix and switches board
-- 1x 5 pin header to connect RTC
-- 1x 2 pin header to connect LED strip
-- 1x screw terminal header for power connection to power supply
+- 2x 12 pin female headers to enable easy replacement of arduino in case of failure (PPTC121LFBN-RC)
+- 3x 6 pin headers to connect 3208 matrix and switches board (1x 801-87-006-20-001101 right angle for 3208 & 2x 10-87-106-41-001101 for switches)
+- 1x 5 pin header to connect RTC (310-87-105-41-001101)
+- 1x 2 pin header to connect LED strip (310-87-102-41-001101)
+- 1x screw terminal header for power connection to power supply (1935161)
 - Various hookup/connection wires
 - Breadboard if no PCB
 
@@ -88,8 +88,9 @@ Rotary encoder used to:
 - 1x 4" ducting connector
 - 1x 4" ducting cap
 - 1x 5" DIA 9" height acrylic canister with white tissue paper as shade
-- 1x AC power entry connector (701W-15/31 or similar)
-- 1x Aluminum knob for rotary encoder
+- 1x AC power entry connector (701W-X2/02 or similar)
+- 1x Aluminum knob for rotary encoder (Ebay)
+- 1x Pushbutton cap for switch (TAGCHR)
 - 4.5 ft of 6" wide hardwood for case
 
 ## Main Board Schematic ##
