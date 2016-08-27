@@ -90,8 +90,7 @@ Rotary encoder used to:
 - 1x 5" DIA 9" height acrylic canister with white tissue paper as shade
 - 1x AC power entry connector (701W-15/31 or similar)
 - 1x Aluminum knob for rotary encoder
-
-**TODO: finish designing the damn case**
+- 4.5 ft of 6" wide hardwood for case
 
 ## Main Board Schematic ##
 
@@ -115,9 +114,35 @@ This is the board with the rotary encoder and button on it. If you want it on on
 
 ## Eagle Switches Board PCB ##
 
-I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. Use at your own risk. Board size: 1.4388 sqin.
+I haven't tested this board yet as it hasn't shown up from the fab. It's probably wrong/may cause a black hole to form and destroy the planet. Use at your own risk. Board size: 1.1135 sqin.
 
 ![Main eagle PCB](https://github.com/lincolnjohnson/SunriseClock/blob/master/EagleSwitch.png)
+
+## Case Design ##
+
+Complete drawings follow below. Sides not shown as they are solid. PDF with full instructions for construction in Drawings folder.
+
+![Clock case](https://github.com/lincolnjohnson/SunriseClock/blob/master/Assembly.png)
+
+###Completed case
+
+![Clock case](https://github.com/lincolnjohnson/SunriseClock/blob/master/Drawings/completed.png)
+
+###Base drawings
+
+![Base drawings](https://github.com/lincolnjohnson/SunriseClock/blob/master/Drawings/back.png)
+
+###Front drawings
+
+![Front drawings](https://github.com/lincolnjohnson/SunriseClock/blob/master/Drawings/front.png)
+
+###Top drawings
+
+![Top drawings](https://github.com/lincolnjohnson/SunriseClock/blob/master/Drawings/top.png)
+
+###Back drawings
+
+![Back drawings](https://github.com/lincolnjohnson/SunriseClock/blob/master/Drawings/back.png)
 
 ## SunriseClock Functions ##
 
