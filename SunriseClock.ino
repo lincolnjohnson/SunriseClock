@@ -88,7 +88,7 @@ volatile boolean inMenu = 0;
 volatile int timeVar;
 volatile byte knobVar = 0;
 volatile byte selectIndex = 0;
-char* selectText [] = { "Rise ? ", "SetLux?", "Follow?", "Rise HR?", "RiseMin", "Set Clk" };
+char* selectText [] = { "Rise ? ", "Rise HR?", "RiseMin", "SetLux?", "Follow?", "Set Clk" };
 char* selectClock [] = { "Set Hr", "Set Min", "Set Sec", "Set Day", "Set Mth", "Set Year" };
 
 void setup(void) {
@@ -570,16 +570,16 @@ void knobPress() {
           knobVar = doSunrise;
           break;
         case 1:
-          knobVar = setBright;
-          break;
-        case 2:
-          knobVar = sunFollow;
-          break;
-        case 3:
           knobVar = sunHour;
           break;
-        case 4:
+        case 2:
           knobVar = sunMinute;
+          break;
+        case 3:
+          knobVar = setBright;
+          break;
+        case 4:
+          knobVar = sunFollow;
           break;
         case 5:
           selectIndex = 0;
@@ -689,6 +689,9 @@ void KnobSelect() {
   knobVar = 0;
   selectIndex = 0;
 
+  HT1632.clear();
+  HT1632.render();
+  NOP();
   toggleBlink(false);
 
   getSunrise();

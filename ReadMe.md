@@ -1,4 +1,4 @@
-# Arduino SunriseClock v3.1 #
+# Arduino SunriseClock v3.2 #
 https://github.com/lincolnjohnson/SunriseClock
 ReadMe file  
 Lincoln Johnson August 2016
@@ -31,18 +31,19 @@ Functionality included:
 - User-adjustable brightness of light when outside of sunrise period
 - Set RTC clock using rotary encoder
 - Automatic RTC adjustment for DST
+- TODO: ADD WEEKEND AUTOMATIC ADJUSTMENT FOR EXTRA SLEEP TIME
 
 Essentially, once initial program is loaded onto clock it never needs to be re-connected unless you want to update the baseline functionality. You can do everything you should need to do through the various menus.
 
 I made some minor adjustments to a couple of the included libraries or used non-standard versions, so they're included in this repository as well so as to make your life easier if you want to compile/build this. Everything in the includes folder is not my own original work. The other included files listed such as EEPROM and Wire are standard arduino versions.
 
-There are dual signal wires to the transistor controlling the LEDs because it seemed that one signal wire wasn't allowing the system to open fully when using a transistor. Not sure why, but doubling up appears to have fixed it - at full duty cycle it's just as bright as a direct connection to power. Now that I've switched to using a MOSFET, one is fine but two doesn't hurt so I left it. If you need the extra pin for something else you can always remove one of 9/10 and update the code appropriately.
+There are dual signal wires to the MOSFET controlling the LEDs because it seemed that one signal wire wasn't allowing the system to open fully when using a transistor. Not sure why, but doubling up appears to have fixed it - at full duty cycle it's just as bright as a direct connection to power, especially with the first MOSFET switching the source voltage to drive the second one. Now that I've switched to using a MOSFET, one is fine but two signals doesn't hurt so I left it. If you need the extra pin for something else you can always remove one of 9/10 and update the code appropriately.
 
 The Pro Micro tends to be cranky with the Arduino IDE sometimes, especially if you are trying to load code to it for the first time, or switching between sketches. I find that jumpering the RST and GND pins, pressing upload on the IDE, and then disconnecting the jumper as soon as the IDE finishes compiling and outputs the size of the files used fixes this problem. Subsequent uploads with the same sketch should work fine. Not sure if this is a problem related to my use of cheap ebay clones.
 
 I strongly suggest you use a high-quality power supply, as when cheap ebay ones start to die they tend to send out significant voltage spikes that fry things... such as your Arduino.
 
-"Arduino SunriseClock v3.1" by Lincoln Johnson is licensed under CC BY-SA 4.0.
+"Arduino SunriseClock v3.2" by Lincoln Johnson is licensed under CC BY-SA 4.0.
 Included libraries are licensed under the licenses provided by their respective creators.
 
 ## Usage notes ##
@@ -69,13 +70,15 @@ Rotary encoder used to:
 - 1x 5m 5630 LED strip
 - 1x RTC Clock (ebay DS3231 clock module board)
 - 1x 8x32 LED display board with HT1632C controller
+- 1x 12v->5V DC converter (BP5293-50)
 - 1x Pushbutton switch (1825910-6)
 - 1x Rotary encoder with pushbutton switch (EN12-HS22AF20)
 - 2x 0.1uF capacitor (K104K10X7RF5UH5)
-- 1x n-channel mosfet (FQU13N06L)
-- 2x 2.2k resistors
+- 2x n-channel mosfet (FQU13N06L)
+- 2x 100ohm resistors
+- 2x 100kohm resistors
 - 2x 12 pin female headers to enable easy replacement of arduino in case of failure (PPTC121LFBN-RC)
-- 3x 6 pin headers to connect 3208 matrix and switches board (1x 801-87-006-20-001101 right angle for 3208 & 2x 10-87-106-41-001101 for switches)
+- 3x 6 pin headers to connect 3208 matrix and switches board (1x 801-87-006-20-001101 right angle for 3208 & 2x 310-87-106-41-001101 for switches)
 - 1x 5 pin header to connect RTC (310-87-105-41-001101)
 - 1x 2 pin header to connect LED strip (310-87-102-41-001101)
 - 1x screw terminal header for power connection to power supply (1935161)
